@@ -1,5 +1,5 @@
 export enum ROUTE_NAMES {
-  app = 'app',
-  uiKit = 'ui-kit',
-  complexForm = 'complex-form',
+  balance = 'balance',
+  sendTx = 'send-tx',
+  txList = 'tx-list',
 }

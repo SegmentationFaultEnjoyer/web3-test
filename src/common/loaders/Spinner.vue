@@ -14,8 +14,8 @@
 .spinner:after {
   content: ' ';
   display: block;
-  width: toRem(64);
-  height: toRem(64);
+  width: toRem(55);
+  height: toRem(55);
   margin: toRem(8);
   border-radius: 50%;
   border: toRem(6) solid var(--border-primary-main);
