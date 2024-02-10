@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useProvider } from '@/composables'
 
 import {
@@ -10,6 +10,7 @@ import {
   FallbackEvmProvider,
 } from '@distributedlab/w3p'
 import { router } from '@/router'
+import { useNetworkStore } from './networks.module'
 
 type SUPPORTED_PROVIDERS = PROVIDERS | FALLBACK_PROVIDERS
 
@@ -41,6 +42,9 @@ const STORE_NAME = 'web3-providers-store'
 
 export const useWeb3ProvidersStore = defineStore(STORE_NAME, () => {
   const provider = useProvider()
+  const networkStore = useNetworkStore()
+
+  const chainInfo = ref<ReturnType<(typeof networkStore)['getChainInfo']>>()
 
   const providerDetector = computed(
     () => new ProviderDetector<SUPPORTED_PROVIDERS>(),
@@ -69,10 +73,20 @@ export const useWeb3ProvidersStore = defineStore(STORE_NAME, () => {
     })
   }
 
+  watch(
+    () => provider.chainId?.value,
+    () => {
+      if (!provider.chainId?.value) return
+
+      chainInfo.value = networkStore.getChainInfo(provider.chainId.value)
+    },
+  )
+
   return {
     detectProviders,
     init,
 
     provider,
+    chainInfo,
   }
 })

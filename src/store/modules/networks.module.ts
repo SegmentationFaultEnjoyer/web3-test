@@ -40,6 +40,8 @@ export const useNetworkStore = defineStore(STORE_NAME, () => {
   }
 
   return {
+    chainList,
+
     init,
 
     getChainInfo,

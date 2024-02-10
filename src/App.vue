@@ -30,10 +30,10 @@ const init = async () => {
   try {
     initNotifications()
 
+    await networkStore.init()
+
     await web3Store.detectProviders()
     await web3Store.init()
-
-    await networkStore.init()
 
     document.title = config.APP_NAME
   } catch (error) {
