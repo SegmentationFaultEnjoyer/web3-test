@@ -1,5 +1,5 @@
 <template>
-  <div class="error-message">
+  <div class="error-message" :style="{ '--icon-size': `${iconSize}px` }">
     <icon class="error-message__img" :name="iconName" />
     <h3 v-if="title" class="error-message__title">
       {{ title }}
@@ -19,13 +19,13 @@ withDefaults(
   defineProps<{
     title?: string
     message?: string
-    schema?: 'large' | 'small'
     iconName?: ICON_NAMES
+    iconSize?: number
   }>(),
   {
     title: '',
     message: '',
-    schema: 'large',
+    iconSize: 50,
     iconName: ICON_NAMES.exclamationCircle,
   },
 )
@@ -40,15 +40,18 @@ withDefaults(
 }
 
 .error-message__img {
-  width: 100%;
-  height: auto;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: var(--error-main);
 }
 
 .error-message__title {
   font-size: toRem(24);
+  color: var(--error-main);
 }
 
 .error-message__message {
   font-size: toRem(18);
+  color: var(--error-main);
 }
 </style>

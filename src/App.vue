@@ -17,16 +17,25 @@ import { useNotifications } from '@/composables'
 import { config } from '@config'
 import { bus, BUS_EVENTS, ErrorHandler } from '@/helpers'
 import { NotificationPayload } from '@/types'
+import { useNetworkStore, useWeb3ProvidersStore } from '@/store'
 
 const isAppInitialized = ref(false)
 
 const { showToast } = useNotifications()
 
+const web3Store = useWeb3ProvidersStore()
+const networkStore = useNetworkStore()
+
 const init = async () => {
   try {
-    document.title = config.APP_NAME
-
     initNotifications()
+
+    await web3Store.detectProviders()
+    await web3Store.init()
+
+    await networkStore.init()
+
+    document.title = config.APP_NAME
   } catch (error) {
     ErrorHandler.process(error)
   }

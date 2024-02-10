@@ -11,17 +11,22 @@ import { ROUTE_NAMES } from '@/enums'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/:catchAll(.*)',
-    redirect: { name: ROUTE_NAMES.uiKit },
+    redirect: { name: ROUTE_NAMES.balance },
   },
   {
-    path: '/ui-kit',
-    name: ROUTE_NAMES.uiKit,
-    component: () => import('@/pages/UiKitPage.vue'),
+    path: '/balance',
+    name: ROUTE_NAMES.balance,
+    component: () => import('@/pages/BalancePage.vue'),
   },
   {
-    path: '/complex-form',
-    name: ROUTE_NAMES.complexForm,
-    component: () => import('@/forms/ComplexForm.vue'),
+    path: '/tx-list',
+    name: ROUTE_NAMES.txList,
+    component: () => import('@/pages/TxListPage.vue'),
+  },
+  {
+    path: '/send-tx',
+    name: ROUTE_NAMES.sendTx,
+    component: () => import('@/pages/SendTxPage.vue'),
   },
 ]
 

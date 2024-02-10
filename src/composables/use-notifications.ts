@@ -81,7 +81,7 @@ export const useNotifications = () => {
           warning: TYPE.WARNING,
         }[messageType],
         toastClassName: 'default-toast',
-        timeout: MINUTE / 2,
+        timeout: MINUTE / 12,
         closeOnClick: false,
       },
     )

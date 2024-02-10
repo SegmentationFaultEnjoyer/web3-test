@@ -1,6 +1,6 @@
 <template>
-  <div class="no-data-message">
-    <icon class="no-data-message__img" :name="iconName" />
+  <div class="no-data-message" :style="{ '--icon-size': `${iconSize}px` }">
+    <icon class="no-data-message__icon" :name="iconName" />
     <span v-if="message" class="no-data-message__message">
       {{ message }}
     </span>
@@ -16,8 +16,9 @@ withDefaults(
   defineProps<{
     message?: string
     iconName?: ICON_NAMES
+    iconSize?: number
   }>(),
-  { message: '', iconName: ICON_NAMES.template },
+  { message: '', iconName: ICON_NAMES.archive, iconSize: 50 },
 )
 </script>
 
@@ -29,9 +30,9 @@ withDefaults(
   grid-gap: toRem(12);
 }
 
-.no-data-message__img {
-  width: 100%;
-  height: auto;
+.no-data-message__icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
 }
 
 .no-data-message__message {
