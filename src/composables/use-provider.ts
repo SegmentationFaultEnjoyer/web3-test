@@ -125,7 +125,6 @@ export const useProvider = () => {
 
   const getBalance = async (account: string) => {
     const balance = await currentProvider.value.getBalance(account)
-
     return balance.toString()
   }
 

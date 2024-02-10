@@ -29,7 +29,7 @@
               </div>
               <div class="balance-page__balance-info-item">
                 <span>{{ $t('balance-page.chain-lbl') }}</span>
-                <span>{{ chainInfo?.name }}</span>
+                <span>{{ web3Store.chainInfo?.name }}</span>
               </div>
             </section>
           </template>
@@ -46,25 +46,23 @@
 </template>
 
 <script setup lang="ts">
-import { useNetworkStore, useWeb3ProvidersStore } from '@/store'
+import { computed, ref, watch } from 'vue'
+
+import { useWeb3ProvidersStore } from '@/store'
 import {
   ErrorMessage,
   NoDataMessage,
   Loader,
   WalletNotConnected,
 } from '@/common'
-import { computed, ref, watch } from 'vue'
 import { ErrorHandler, cropAddress, formatAssetFromWei } from '@/helpers'
 
 const FORMATTING_DECIMALS = 5
 
-const networkStore = useNetworkStore()
 const web3Store = useWeb3ProvidersStore()
-
 const provider = computed(() => web3Store.provider)
 
 const balance = ref<string>()
-const chainInfo = ref<ReturnType<(typeof networkStore)['getChainInfo']>>()
 
 const isLoaded = ref(false)
 const isLoadFailed = ref(false)
@@ -72,12 +70,12 @@ const isLoadFailed = ref(false)
 const balanceToDisplay = computed(
   () =>
     balance.value &&
-    chainInfo.value &&
+    web3Store.chainInfo &&
     `${formatAssetFromWei(
       balance.value,
-      chainInfo.value.nativeCurrency.decimals,
+      web3Store.chainInfo.nativeCurrency.decimals,
       FORMATTING_DECIMALS,
-    )} ${chainInfo.value.nativeCurrency.symbol}`,
+    )} ${web3Store.chainInfo.nativeCurrency.symbol}`,
 )
 
 const loadBalance = async () => {
@@ -88,8 +86,6 @@ const loadBalance = async () => {
 
   try {
     const userBalance = await provider.value.getBalance(provider.value.address)
-
-    chainInfo.value = networkStore.getChainInfo(provider.value.chainId)
 
     balance.value = userBalance
   } catch (error) {
@@ -122,7 +118,7 @@ watch(() => [provider.value.address, provider.value.chainId], loadBalance, {
 
 .balance-page__title {
   font-weight: 600;
-  font-size: toRem(36);
+  font-size: toRem(32);
 }
 
 .balance-page__balance-info {
