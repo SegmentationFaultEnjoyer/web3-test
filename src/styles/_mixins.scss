@@ -100,3 +100,16 @@ $media-breakpoints: (
   width: 100%;
   margin: auto;
 }
+
+@mixin app-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: toRem(40);
+  padding: toRem(40);
+}
+
+@mixin app-page-title {
+  font-weight: 600;
+  font-size: toRem(32);
+}

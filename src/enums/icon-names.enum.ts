@@ -1,5 +1,6 @@
 export enum ICON_NAMES {
   archive = 'archive',
+  arrowDown = 'arrow-down',
   checkCircle = 'check-circle',
   check = 'check',
   copy = 'copy',

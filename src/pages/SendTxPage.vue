@@ -150,16 +150,11 @@ watch(() => provider.value.address, loadBalance, {
 
 <style lang="scss" scoped>
 .send-tx-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: toRem(40);
-  padding: toRem(40);
+  @include app-page;
 }
 
 .send-tx-page__title {
-  font-weight: 600;
-  font-size: toRem(32);
+  @include app-page-title;
 }
 
 .send-tx-page__form {

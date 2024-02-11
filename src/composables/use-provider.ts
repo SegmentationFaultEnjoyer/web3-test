@@ -12,6 +12,7 @@ import {
 } from '@distributedlab/w3p'
 import { computed, onUnmounted, reactive, ref, toRefs } from 'vue'
 import { providers } from 'ethers'
+import { chainToScanMap } from '@/consts'
 
 type ProviderState = {
   address?: string
@@ -128,6 +129,20 @@ export const useProvider = () => {
     return balance.toString()
   }
 
+  const getLastTransactions = async (account: string, txAmount = 10) => {
+    if (!_providerReactiveState.chainId) return []
+
+    const network = chainToScanMap.get(_providerReactiveState.chainId)
+
+    if (!network) return []
+
+    const etherScanProvider = new providers.EtherscanProvider(network)
+
+    const txList = await etherScanProvider.getHistory(account)
+
+    return txList.slice(0, txAmount)
+  }
+
   const disconnect = async () => {
     if (_provider?.disconnect) {
       await _provider.disconnect()
@@ -157,6 +172,8 @@ export const useProvider = () => {
     getHashFromTx,
     getTxUrl,
     getBalance,
+    getLastTransactions,
+
     signAndSendTx,
     signMessage,
 

@@ -103,11 +103,7 @@ watch(() => [provider.value.address, provider.value.chainId], loadBalance, {
 
 <style lang="scss" scoped>
 .balance-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: toRem(40);
-  padding: toRem(40);
+  @include app-page;
 }
 
 .balance-page__loader,
@@ -117,8 +113,7 @@ watch(() => [provider.value.address, provider.value.chainId], loadBalance, {
 }
 
 .balance-page__title {
-  font-weight: 600;
-  font-size: toRem(32);
+  @include app-page-title;
 }
 
 .balance-page__balance-info {
