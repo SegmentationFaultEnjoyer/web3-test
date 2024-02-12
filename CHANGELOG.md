@@ -9,9 +9,14 @@ for further information about branching and tagging conventions.
 
 ## [Unreleased]
 
-## [1.0.0-rc.0] - 2021-12-23
-#### Under the hood changes
-- Forked from [vue-template](https://gitlab.com/distributed_lab/frontend/vue-template)
+## [1.0.0] - 2024-02-12
+#### Added
+- Check balance page
+- Send native currency page
+- Transactions list page
 
-[Unreleased]: https://gitlab.com/distributed_lab/frontend/vue-template/compare/1.0.0-rc.0...main
-[1.0.0-rc.0]: https://gitlab.com/distributed_lab/frontend/vue-template/tags/1.0.0-rc.0
+#### Under the hood changes
+- Generated from [vue-template](https://github.com/distributed-lab/vue-template)
+
+[Unreleased]: https://github.com/SegmentationFaultEnjoyer/web3-test/compare/1.0.0...main
+[1.0.0]: https://github.com/SegmentationFaultEnjoyer/web3-test/tags/1.0.0

@@ -1,4 +1,9 @@
-# Distributed Lab vue started template
+# Web3 Test
+
+Project has 3 main features:
+- Check user balance
+- Send native currency to another account
+- Check list of last 10 transactions (limited by supported chain list)
 
 ## Project setup
 ```
