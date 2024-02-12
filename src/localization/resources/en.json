@@ -51,5 +51,12 @@
     "amount-note": "Your balance: {balance}",
     "submit-btn": "Submit",
     "success-msg": "Successfuly sended {amount} {currency} to another account"
+  },
+  "tx-list-page": {
+    "title": "Transcations list",
+    "select-chain-lbl": "Select supported chain",
+    "select-chain-note": "Etherscan provider has limited amount of supported chains",
+    "error-msg": "Failed to load transactions list",
+    "no-data-msg": "No transcations to display"
   }
 }
